@@ -20,7 +20,7 @@ impl<'a> TOTP<'a> {
         }
     }
 
-    /// Signs the given timestamp for the given secret
+    /// Signs the given timestamp with the given secret
     pub fn sign(&self, time: u64) -> Vec<u8> {
         // We don't explicitly state T0 = 0, https://tools.ietf.org/html/rfc6238#section-4.2
         let ctr = (time / self.timestep).to_be_bytes();
@@ -30,19 +30,16 @@ impl<'a> TOTP<'a> {
 
         // Pass in the current timestamp
         mac.update(&ctr);
-
-        // Return owned value
         mac.finalize().into_bytes().to_vec()
     }
 
     /// Generate a token based on the passed in configuration and the current system time
     pub fn generate_token(&self) -> String {
-        // Get Unix Epoch as seconds
         let time = SystemTime::now()
             .duration_since(SystemTime::UNIX_EPOCH).unwrap()
             .as_secs();
 
-        let result = &self.sign(time);
+        let signed_timestamp = &self.sign(time);
 
         // sha1 always returns 20 bytes
         // bitwise AND over byte 19 (20th byte) and 0xf, https://tools.ietf.org/html/rfc4226#section-5.4
@@ -50,13 +47,13 @@ impl<'a> TOTP<'a> {
         //      over      0xf  =      1111
         //                0xa  = 0000 1010 = 10
         //  So offset value is at byte 10
-        let offset = (result[19] & 0xf) as usize;
+        let offset = (signed_timestamp[19] & 0xf) as usize;
 
         // We have a u8, convert to u32 to allow left-shift of 24 bit postions
-        let result = (u32::from(result[offset]) & 0x7f) << 24 // Mask first byte with 0x7f, https://tools.ietf.org/html/rfc4226#section-5.4
-                    | (u32::from(result[offset+1])) << 16 // In reference implementations these are masked with 0xff, but they are u8 so we can skip this
-                    | (u32::from(result[offset+2])) << 8
-                    | (u32::from(result[offset+3]));
+        let result = (u32::from(signed_timestamp[offset]) & 0x7f) << 24 // Mask first byte with 0x7f, https://tools.ietf.org/html/rfc4226#section-5.4
+                    | (u32::from(signed_timestamp[offset+1])) << 16 // In reference implementations these are masked with 0xff, but they are u8 so we can skip this
+                    | (u32::from(signed_timestamp[offset+2])) << 8
+                    | (u32::from(signed_timestamp[offset+3]));
 
         // With everything stringed together into a u32, we format by taking module 10^Digit, https://tools.ietf.org/html/rfc4226#section-5.3
         format!(
