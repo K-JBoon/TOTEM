@@ -1,5 +1,5 @@
 [package]
-name = "tom"
+name = "totem"
 version = "0.1.0"
 authors = ["Klaas-Jan Boon <klaas-janboon@live.nl>"]
 edition = "2018"
