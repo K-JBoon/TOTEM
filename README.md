@@ -5,6 +5,23 @@
 totpgen is a tool for managing and generating TOTP tokens on the command line quickly. You can
 configure your tokens with the CLI interface or directly in your config directory.
 
+## Installation
+
+To install, you can either use
+
+```
+cargo install totpgen
+```
+
+or build the project yourself
+
+```
+$ git clone https://github.com/K-JBoon/totpgen
+$ cd totpgen
+$ cargo build --release
+$ sudo mv /usr/bin/ ./target/release/totpgen
+```
+
 ## Usage
 
 ```
