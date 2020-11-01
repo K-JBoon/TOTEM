@@ -1,3 +1,5 @@
+![Rust](https://github.com/K-JBoon/totpgen/workflows/Rust/badge.svg)
+
 # totpgen
 
 totpgen is a tool for managing and generating TOTP tokens on the command line quickly You can
