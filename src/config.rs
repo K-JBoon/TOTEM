@@ -29,3 +29,21 @@ pub fn store_config(cfg: TOTPGenConfig) -> Result<()> {
     confy::store("totpgen", cfg)?;
     Ok(())
 }
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+
+    #[test]
+    fn correctly_gets_config() {
+        let result = get_config();
+        assert!(result.is_ok());
+    }
+
+    #[test]
+    fn correctly_stores_config() {
+        let cfg = get_config().expect("Failed to get config to store.");
+        let result = store_config(cfg);
+        assert!(result.is_ok());
+    }
+}
