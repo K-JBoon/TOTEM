@@ -1,10 +1,13 @@
 [package]
 name = "totpgen"
+description = "totpgen is a tool for managing and generating TOTP tokens on the command line quickly."
+license = "MIT OR Apache-2.0"
 version = "0.1.0"
 authors = ["Klaas-Jan Boon <klaas-janboon@live.nl>"]
 edition = "2018"
 keywords = [ "totp" ]
 categores = [ "command-line-utilities", "authentication" ]
+repository = "https://github.com/K-JBoon/totpgen"
 
 [dependencies]
 sha-1 = "0.9.1"

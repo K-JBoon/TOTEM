@@ -2,8 +2,8 @@
 
 # totpgen
 
-totpgen is a tool for managing and generating TOTP tokens on the command line quickly You can
-configure your tokens with the CLI interface or directly in your config directory
+totpgen is a tool for managing and generating TOTP tokens on the command line quickly. You can
+configure your tokens with the CLI interface or directly in your config directory.
 
 ## Usage
 

@@ -10,8 +10,8 @@ use clap::Clap;
 extern crate strfmt;
 use strfmt::strfmt;
 
-/// totpgen is a tool for managing and generating TOTP tokens on the command line quickly
-/// You can configure your tokens with the CLI interface or directly in your config directory
+/// totpgen is a tool for managing and generating TOTP tokens on the command line quickly.
+/// You can configure your tokens with the CLI interface or directly in your config directory.
 #[derive(Clap)]
 #[clap(version = "0.1", author = "Klaas-Jan Boon <klaas-janboon@live.nl>")]
 struct Opts {
