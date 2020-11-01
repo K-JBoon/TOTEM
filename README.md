@@ -1,4 +1,8 @@
 ![Rust](https://github.com/K-JBoon/totpgen/workflows/Rust/badge.svg)
+[![Crates.io](https://img.shields.io/crates/v/clap?style=flat-square)](https://crates.io/crates/totpgen)
+[![License](https://img.shields.io/badge/license-Apache%202.0-blue?style=flat-square)](https://github.com/K-JBoon/totpgen/blob/master/LICENSE-APACHE)
+[![License](https://img.shields.io/badge/license-MIT-blue?style=flat-square)](https://github.com/K-JBoon/totpgen/blob/master/LICENSE-MIT)
+
 
 # totpgen
 
