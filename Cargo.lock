@@ -429,7 +429,7 @@ dependencies = [
 ]
 
 [[package]]
-name = "totem"
+name = "totpgen"
 version = "0.1.0"
 dependencies = [
  "anyhow",

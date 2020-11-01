@@ -12,20 +12,20 @@ pub struct TokenConfig {
 }
 
 #[derive(Serialize, Deserialize)]
-pub struct TOTEMConfig {
+pub struct TOTPGenConfig {
     pub tokens: HashMap<String, TokenConfig>
 }
 
-impl ::std::default::Default for TOTEMConfig {
+impl ::std::default::Default for TOTPGenConfig {
     fn default() -> Self { Self { tokens: HashMap::new() } }
 }
 
-pub fn get_config() -> Result<TOTEMConfig> {
-    let cfg: TOTEMConfig = confy::load("TOTEM")?;
+pub fn get_config() -> Result<TOTPGenConfig> {
+    let cfg: TOTPGenConfig = confy::load("totpgen")?;
     Ok(cfg)
 }
 
-pub fn store_config(cfg: TOTEMConfig) -> Result<()> {
-    confy::store("TOTEM", cfg)?;
+pub fn store_config(cfg: TOTPGenConfig) -> Result<()> {
+    confy::store("totpgen", cfg)?;
     Ok(())
 }
