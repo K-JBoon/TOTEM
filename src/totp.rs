@@ -56,8 +56,7 @@ impl<'a> TOTP<'a> {
                     | (u32::from(signed_timestamp[offset+3]));
 
         // With everything stringed together into a u32, we format by taking module 10^Digit, https://tools.ietf.org/html/rfc4226#section-5.3
-        format!(
-            "{:1$}",
+        format!("{:1$}",
             (result as u64) % (10_u64).pow(self.digits as u32),
             self.digits
         )

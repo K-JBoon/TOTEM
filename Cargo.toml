@@ -12,3 +12,5 @@ hmac = "0.10.1"
 confy = "0.4.0"
 serde = { version = "1.0.117", features = ["derive"] }
 anyhow = "1.0.33"
+clap = "3.0.0-beta.2"
+strfmt = "0.1.6"

@@ -1,25 +1,31 @@
 use confy;
 use serde::{Serialize, Deserialize};
 use anyhow::Result;
+use std::collections::HashMap;
 
-#[derive(Serialize, Deserialize)]
-struct TOTPConfig {
-    secret: String,
-    digits: usize,
-    timestep: u64,
-    format: String
+#[derive(Debug, Serialize, Deserialize)]
+pub struct TokenConfig {
+    pub secret: String,
+    pub digits: usize,
+    pub timestep: u64,
+    pub format: Option<String>
 }
 
 #[derive(Serialize, Deserialize)]
 pub struct TOTEMConfig {
-    tokens: Vec<TOTPConfig>
+    pub tokens: HashMap<String, TokenConfig>
 }
 
 impl ::std::default::Default for TOTEMConfig {
-    fn default() -> Self { Self { tokens: vec![] } }
+    fn default() -> Self { Self { tokens: HashMap::new() } }
 }
 
 pub fn get_config() -> Result<TOTEMConfig> {
     let cfg: TOTEMConfig = confy::load("TOTEM")?;
     Ok(cfg)
+}
+
+pub fn store_config(cfg: TOTEMConfig) -> Result<()> {
+    confy::store("TOTEM", cfg)?;
+    Ok(())
 }
