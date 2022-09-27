@@ -23,7 +23,7 @@ or build the project yourself
 $ git clone https://github.com/K-JBoon/totpgen
 $ cd totpgen
 $ cargo build --release
-$ sudo mv ./target/release/totpgen /usr/bin/totpgen
+$ sudo cp ./target/release/totpgen /usr/bin/totpgen
 ```
 
 ## Usage
