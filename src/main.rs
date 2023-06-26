@@ -6,20 +6,20 @@ mod config;
 use totp::TOTP;
 use config::TokenConfig;
 
-use clap::Clap;
+use clap::Parser;
 extern crate strfmt;
 use strfmt::strfmt;
 
 /// totpgen is a tool for managing and generating TOTP tokens on the command line quickly.
 /// You can configure your tokens with the CLI interface or directly in your config directory.
-#[derive(Clap)]
-#[clap(version = "0.1", author = "Klaas-Jan Boon <klaas-janboon@live.nl>")]
+#[derive(Parser)]
+#[command(version = "0.1", author = "Klaas-Jan Boon <klaas-janboon@live.nl>")]
 struct Opts {
-    #[clap(subcommand)]
+    #[command(subcommand)]
     subcmd: SubCommand
 }
 
-#[derive(Clap)]
+#[derive(Parser)]
 enum SubCommand {
     DeleteToken(DeleteToken),
     ListTokens(ListTokens),
@@ -28,43 +28,43 @@ enum SubCommand {
 }
 
 /// Delete the token with the given ID
-#[derive(Clap)]
+#[derive(Parser)]
 struct DeleteToken {
-    #[clap(short,long)]
+    #[arg(short,long)]
     id: String
 }
 
 /// List all configured tokens
-#[derive(Clap)]
+#[derive(Parser)]
 struct ListTokens { }
 
 /// Insert or update a token in your configuration
-#[derive(Clap)]
+#[derive(Parser)]
 struct InsertToken {
     /// A unique ID for this token
-    #[clap(short, long)]
+    #[arg(short, long)]
     id: String,
     /// The secret to be used for this TOTP token
-    #[clap(short, long)]
+    #[arg(short, long)]
     secret: String,
     /// The length to generate for this TOTP token
-    #[clap(short, long)]
+    #[arg(short, long)]
     digits: usize,
     /// The timestep for this TOTP token
-    #[clap(short, long)]
+    #[arg(short, long)]
     timestep: u64,
     /// An optional formatting rule for the output of this token
-    #[clap(short, long)]
+    #[arg(short, long)]
     format: Option<String>
 }
 
 /// Generate a token for the given ID and current time
-#[derive(Clap)]
+#[derive(Parser)]
 struct GenerateToken {
     /// The ID of the token to generate
     input: String,
     /// Ignore the specified formatting for the token in the output
-    #[clap(short, long)]
+    #[arg(short, long)]
     ignore_formatting: bool
 }
 

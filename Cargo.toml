@@ -13,7 +13,7 @@ repository = "https://github.com/K-JBoon/totpgen"
 sha-1 = "0.9.1"
 hmac = "0.10.1"
 confy = "0.4.0"
-serde = { version = "1.0.117", features = ["derive"] }
+serde = { version = "1.0.164", features = ["derive"] }
 anyhow = "1.0.33"
-clap = "3.0.0-beta.2"
 strfmt = "0.1.6"
+clap = { version = "4.3.8", features = ["derive"] }
